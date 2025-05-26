@@ -1,12 +1,14 @@
 name: push
 
-on: push
+on:
+  push:
+    branches:
+      - '**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
       - uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
@@ -23,9 +25,9 @@ jobs:
         run: make compose-build
 
       - name: Check
-        run: compose-ci
+        run: make compose-ci
 
       - name: Push
-        run: compose-push
+        run: make compose-push
 
       
