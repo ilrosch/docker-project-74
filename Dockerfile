@@ -6,4 +6,4 @@ RUN npm ci
 
 COPY . .
 
-CMD ["make", "start"]
+CMD make start

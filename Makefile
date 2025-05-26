@@ -4,6 +4,9 @@ app-setup:
 compose:
 	docker compose up -d
 
+compose-build:
+	docker-compose -f docker-compose.yml build app
+
 compose-logs:
 	docker compose logs -f
 
@@ -12,6 +15,9 @@ compose-down:
 
 compose-clear:
 	docker compose down -v --remove-orphans || true
+
+compose-push:
+	docker-compose -f docker-compose.yml push app
 
 compose-stop:
 	docker compose stop || true
@@ -22,4 +28,4 @@ compose-restart:
 compose-setup: compose-down app-setup
 
 compose-ci:
-	docker compose --file docker-compose.yml up --abort-on-container-exit
+	docker-compose -f docker-compose.yml up --abort-on-container-exit
