@@ -21,7 +21,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build App
-        uses: docker/build-push-action@v3
         run: make compose-build
 
       - name: Check
@@ -29,5 +28,3 @@ jobs:
 
       - name: Push
         run: make compose-push
-
-      
