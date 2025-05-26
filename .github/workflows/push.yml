@@ -3,28 +3,38 @@ name: push
 on:
   push:
     branches:
-      - '**'
+      - main
+
+env:
+  CI: true
+  APP_IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/docker-project-74
 
 jobs:
-  build:
+  push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Check
+        run: |
+          make compose-build
+          make compose-ci
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build App
-        run: make compose-build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Check
-        run: make compose-ci
-
-      - name: Push
-        run: make compose-push
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.production
+          cache-from: type=registry,ref=${{ env.APP_IMAGE_NAME }}
+          cache-to: type=inline
+          push: true
+          tags: ${{ env.APP_IMAGE_NAME }}:latest
