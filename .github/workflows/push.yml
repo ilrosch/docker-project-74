@@ -1,13 +1,6 @@
 name: push
 
-on:
-  push:
-    branches:
-      - main
-
-env:
-  CI: true
-  APP_IMAGE_NAME: ilrosch/docker-hub-docker-project-74
+on: push
 
 jobs:
   build:
