@@ -1,7 +1,9 @@
 start:
+	make env
 	docker compose up
 
 build:
+	make env
 	docker compose -f docker-compose.yml build app
 
 push:
@@ -9,3 +11,6 @@ push:
 
 ci:
 	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+
+env:
+	cp app/.env.example .env
