@@ -1,4 +1,4 @@
-setup: install db-migrate
+setup: install db-migrate prepare-env
 
 install:
 	npm install
