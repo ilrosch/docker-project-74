@@ -1,9 +1,9 @@
+version: "3"
+
 services:
   app:
-    image: ilrosch/docker-hub-docker-project-74
+    image: ilrosch/docker-project-74
     build:
       context: .
       dockerfile: Dockerfile.production
     command: make test
-    volumes:
-      - "./app:/app"

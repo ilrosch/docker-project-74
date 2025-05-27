@@ -1,31 +1,11 @@
-app-setup:
-	docker compose run --rm app make setup
+start:
+	docker compose up
 
-compose:
-	docker compose up -d
-
-compose-build:
+build:
 	docker compose -f docker-compose.yml build app
 
-compose-logs:
-	docker compose logs -f
-
-compose-down:
-	docker compose down --remove-orphans || true
-
-compose-clear:
-	docker compose down -v --remove-orphans || true
-
-compose-push:
+push:
 	docker compose -f docker-compose.yml push app
 
-compose-stop:
-	docker compose stop || true
-
-compose-restart:
-	docker compose restart
-
-compose-setup: compose-down app-setup
-
-compose-ci:
-	docker compose -f docker-compose.yml up --abort-on-container-exit
+ci:
+	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
