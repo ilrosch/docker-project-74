@@ -18,3 +18,18 @@ Docker Compose allows you to develop a project locally using Docker. Docker Comp
 In this project, students package a [js-fastify-blog](https://github.com/hexlet-components/js-fastify-blog) application in a Docker image. The application already uses the [12 factors methodology](https://12factor.net/), this minimises the differences between development and production environments.
 
 Docker Compose is used to set up the development environment, run tests and CI. Upon successful CI execution, an image of the application is built and published to hub.docker.com. This makes setting up and running the application a matter of minutes, without instructions.
+
+
+```console
+  # Run application development
+  make start
+
+  # Run build application (production)
+  make build
+
+  # Run tests (on Postgres)
+  make ci 
+
+  # Push on Docker Hub
+  make push
+```
