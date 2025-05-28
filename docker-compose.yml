@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile.production
     command: make test
     env_file:
-      - ".env"
+      - "$PWD/app/.env"
     depends_on:
       db:
         condition: service_healthy

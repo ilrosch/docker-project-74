@@ -10,7 +10,7 @@ build:
 	npm run build
 
 prepare-env:
-	cp -n .env.example .env
+	cp .env.example .env
 
 start:
 	NODE_ENV=production npm run start
