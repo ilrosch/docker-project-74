@@ -12,17 +12,15 @@ services:
       - "8080:8080"
     volumes:
       - "./app:/app"
-
+  
   caddy:
     image: caddy
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     volumes:
-      - ./services/caddy:/etc/caddy
-    depends_on:
+      - "./services/caddy:/etc/caddy"
+    depends_on: 
       - app
-
-volumes:
-  caddy_data:
-  caddy_config:
