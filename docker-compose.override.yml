@@ -1,11 +1,11 @@
-version: "3"
+version: "4"
 
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    command: make dev
+    command: bash -c 'sleep 3 && make dev'
     environment:
       - NODE_ENV=development
     ports:

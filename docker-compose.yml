@@ -1,4 +1,4 @@
-version: "3"
+version: "4"
 
 services:
   app:
@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    command: make test
+    command: bash -c 'sleep 3 && make test'
     env_file:
       - "$PWD/app/.env"
     depends_on:
